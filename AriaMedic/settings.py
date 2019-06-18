@@ -10,7 +10,7 @@ SECRET_KEY = '20s727pk+hn34t$7l)z0hu#n)sk7!o4g4al_jo*!ru99hr+b00'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -19,6 +19,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework_swagger',
+    'rest_framework',
+    'userprofile',
+    'website',
+
+
 ]
 
 MIDDLEWARE = [
@@ -32,7 +38,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'AriaMedic.urls'
-
+AUTH_USER_MODEL = 'userprofile.User'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
