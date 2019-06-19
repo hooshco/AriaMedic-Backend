@@ -10,3 +10,8 @@ class StateSerializer(serializers.Serializer):
         Create and return a new `State` instance, given the validated data.
         """
         return models.State.objects.create(**validated_data)
+
+class MajorSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    name = serializers.CharField()
+    m_type = serializers.IntegerField()
