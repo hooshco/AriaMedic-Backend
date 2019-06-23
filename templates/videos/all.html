@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>پنل ادمین</title>
+    <!-- Css -->
+    <link rel="stylesheet" href="../../../css/fontiran.css">
+    <link rel="stylesheet" href="../../../css/fontawesome.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/select2.min.css">
+    <link rel="stylesheet" href="../../../css/admin/admin-main.css">
+    <link rel="stylesheet" href="../../../css/admin/admin-max992.css">
+    <link rel="stylesheet" href="../../../css/admin/admin-max768.css">
+    <link rel="stylesheet" href="../../../css/admin/admin-max576.css">
+</head>
+
+<body dir="rtl">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="#"><i class="fab fa-dashcube ml-3"></i>داشبورد</a>
+    <a href="#" target="_blank"><i class="fas fa-sitemap ml-3"></i>فروشگاه (سایت)</a>
+    <div style="width: 100%;height: 1px;background:#FFFFFF;opacity: .5"></div>
+    <a href="#"><i class="fas fa-layer-group ml-3"></i>دسته بندی ها</a>
+    <a href="#"><i class="fas fa-tags ml-3"></i>برچسب ها</a>
+    <a href="#"><i class="fas fa-project-diagram ml-3"></i>محصولات</a>
+    <a href="#" class="active-menu"><i class="fas fa-video ml-3"></i>ویدیو ها</a>
+    <a href="#"><i class="fas fa-volume-up ml-3"></i>صوت ها</a>
+    <a href="#"><i class="fas fa-book-reader ml-3"></i>کتاب ها</a>
+    <a href="#"><i class="fas fa-book ml-3"></i>تست ها</a>
+    <a href="#"><i class="far fa-building ml-3"></i>انتشارات</a>
+    <div style="width: 100%;height: 1px;background:#FFFFFF;opacity: .5"></div>
+    <a href="#"><i class="fas fa-users ml-3"></i>کاربران</a>
+    <a href="#"><i class="fas fa-comment-alt ml-3"></i>دیدگاه ها</a>
+    <a href="#"><i class="far fa-credit-card ml-3"></i>سفارشات</a>
+    <a href="#"><i class="fas fa-ad ml-3"></i>آکهی ها</a>
+    <a href="#"><i class="fas fa-laptop-medical ml-3"></i>دیکشنری</a>
+    <a href="#"><i class="fas fa-user-cog ml-3"></i>تنظیمات</a>
+</div>
+
+<!--Content-->
+<div class="admin-content">
+
+    <div class="content">
+
+        <!-- Breadcrumbs -->
+        <div class="custom-breadcrumbs">
+            <span>مسیر جاری : </span>
+            <!--Item-->
+            <a href="#" class="item mr-2">پیشخوان</a>
+            <!--Item-->
+            <a href="#" class="item mr-2">ویدیو ها</a>
+        </div>
+        <hr>
+        <br>
+
+        <!--Topic Of Content-->
+        <div class="topic-content mb-4">
+            <div class="d-flex align-items-center ">
+                <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
+                    <i class="fas fa-video ml-3"></i>
+                </span>
+                <h5>ویدیو ها</h5>
+            </div>
+            <a href="#" class="btn btn-sm submit-btn">آپلود ویدیو</a>
+        </div>
+
+        <!--Search-->
+        <input type="text" class="form-control mb-3" placeholder="جستجو در ویدیو ها...">
+
+        <!--========================= Table =========================-->
+        <div class="table-responsive text-nowrap">
+            <table class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">عنوان</th>
+                <th scope="col">مدرس</th>
+                <th scope="col">تاریخ انتشار</th>
+                <th scope="col">حجم فایل</th>
+                <th scope="col">مدت زمان</th>
+                <th scope="col">زبان</th>
+                <th scope="col">تنظیمات</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <i class="fas fa-grip-vertical ml-1"></i>
+                        <span>ویدیو شماره 1</span>
+                    </td>
+                    <td class="font-weight-light">نام مدرس</td>
+                    <td></td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">35 MB</span>
+                    </td>
+                    <td>34 : 44</td>
+                    <td class="font-weight-bold">
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">فارسی</span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <i class="fas fa-grip-vertical ml-1"></i>
+                        <span>ویدیو شماره 1</span>
+                    </td>
+                    <td class="font-weight-light">نام مدرس</td>
+                    <td></td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">35 MB</span>
+                    </td>
+                    <td>34 : 44</td>
+                    <td class="font-weight-bold">
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">فارسی</span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <i class="fas fa-grip-vertical ml-1"></i>
+                        <span>ویدیو شماره 1</span>
+                    </td>
+                    <td class="font-weight-light">نام مدرس</td>
+                    <td></td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">35 MB</span>
+                    </td>
+                    <td>34 : 44</td>
+                    <td class="font-weight-bold">
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">فارسی</span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <i class="fas fa-grip-vertical ml-1"></i>
+                        <span>ویدیو شماره 1</span>
+                    </td>
+                    <td class="font-weight-light">نام مدرس</td>
+                    <td></td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">35 MB</span>
+                    </td>
+                    <td>34 : 44</td>
+                    <td class="font-weight-bold">
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">فارسی</span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <i class="fas fa-grip-vertical ml-1"></i>
+                        <span>ویدیو شماره 1</span>
+                    </td>
+                    <td class="font-weight-light">نام مدرس</td>
+                    <td></td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">35 MB</span>
+                    </td>
+                    <td>34 : 44</td>
+                    <td class="font-weight-bold">
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">فارسی</span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <i class="fas fa-grip-vertical ml-1"></i>
+                        <span>ویدیو شماره 1</span>
+                    </td>
+                    <td class="font-weight-light">نام مدرس</td>
+                    <td></td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">35 MB</span>
+                    </td>
+                    <td>34 : 44</td>
+                    <td class="font-weight-bold">
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">فارسی</span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <i class="fas fa-grip-vertical ml-1"></i>
+                        <span>ویدیو شماره 1</span>
+                    </td>
+                    <td class="font-weight-light">نام مدرس</td>
+                    <td></td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">35 MB</span>
+                    </td>
+                    <td>34 : 44</td>
+                    <td class="font-weight-bold">
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">فارسی</span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <i class="fas fa-grip-vertical ml-1"></i>
+                        <span>ویدیو شماره 1</span>
+                    </td>
+                    <td class="font-weight-light">نام مدرس</td>
+                    <td></td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">35 MB</span>
+                    </td>
+                    <td>34 : 44</td>
+                    <td class="font-weight-bold">
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">فارسی</span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <i class="fas fa-grip-vertical ml-1"></i>
+                        <span>ویدیو شماره 1</span>
+                    </td>
+                    <td class="font-weight-light">نام مدرس</td>
+                    <td></td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">35 MB</span>
+                    </td>
+                    <td>34 : 44</td>
+                    <td class="font-weight-bold">
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">فارسی</span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <i class="fas fa-grip-vertical ml-1"></i>
+                        <span>ویدیو شماره 1</span>
+                    </td>
+                    <td class="font-weight-light">نام مدرس</td>
+                    <td></td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">35 MB</span>
+                    </td>
+                    <td>34 : 44</td>
+                    <td class="font-weight-bold">
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">فارسی</span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <i class="fas fa-grip-vertical ml-1"></i>
+                        <span>ویدیو شماره 1</span>
+                    </td>
+                    <td class="font-weight-light">نام مدرس</td>
+                    <td></td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">35 MB</span>
+                    </td>
+                    <td>34 : 44</td>
+                    <td class="font-weight-bold">
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">فارسی</span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="#" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<!-- Scripts -->
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/vue2.min.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+<script src="../../../js/admin/admin.js"></script>
+</body>
+
+</html>

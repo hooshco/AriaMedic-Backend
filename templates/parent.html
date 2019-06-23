@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+      <head>
+          {% load static %}
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+            <title>{% block title %} {% endblock %}| پنل ادمین</title>
+            <!-- Css -->
+            <link rel="stylesheet" href="{% static 'css/fontiran.css'%}">
+            <link rel="stylesheet" href="{% static 'css/fontawesome.min.css'%}">
+            <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+            <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.min.css'%}">
+            <link rel="stylesheet" href="{% static 'css/select2.min.css'%}">
+            <link rel="stylesheet" href="{% static 'css/admin/admin-main.css'%}">
+            <link rel="stylesheet" href="{% static 'css/admin/admin-max992.css'%}">
+            <link rel="stylesheet" href="{% static 'css/admin/admin-max768.css'%}">
+            <link rel="stylesheet" href="{% static 'css/admin/admin-max576.css'%}">
+      </head>
+
+      <body dir="rtl">
+            <div class="sidebar">
+                  <a href="{% url 'dashboard' %}" class="{%  if request.resolver_match.url_name == 'dashboard' %}active-menu {% endif %}"><i class="fab fa-dashcube ml-3"></i>داشبورد</a>
+                  <a href="#" target="_blank"><i class="fas fa-sitemap ml-3"></i>فروشگاه (سایت)</a>
+                  <div style="width: 100%;height: 1px;background:#FFFFFF;opacity: .5"></div>
+                  <a href="{% url 'category' %}" class="{%  if request.resolver_match.url_name == 'category' %}active-menu {% endif %}"><i class="fas fa-layer-group ml-3"></i>دسته بندی ها</a>
+                  <a href="{% url 'tag' %}" class="{%  if request.resolver_match.url_name == 'tag' %}active-menu {% endif %}"><i class="fas fa-tags ml-3"></i>برچسب ها</a>
+                  <a href="{% url 'product' %}" class="{%  if request.resolver_match.url_name == 'product' %}active-menu {% endif %}"><i class="fas fa-project-diagram ml-3"></i>محصولات</a>
+                  <a href="#"><i class="fas fa-video ml-3"></i>ویدیو ها</a>
+                  <a href="#"><i class="fas fa-volume-up ml-3"></i>صوت ها</a>
+                  <a href="#"><i class="fas fa-book-reader ml-3"></i>کتاب ها</a>
+                  <a href="#"><i class="fas fa-book ml-3"></i>تست ها</a>
+                  <a href="{% url 'publisher' %}" class="{%  if request.resolver_match.url_name == 'publisher' %}active-menu {% endif %}"><i class="far fa-building ml-3"></i>انتشارات</a>
+                  <div style="width: 100%;height: 1px;background:#FFFFFF;opacity: .5"></div>
+                  <a href="#"><i class="fas fa-users ml-3"></i>کاربران</a>
+                  <a href="#"><i class="fas fa-comment-alt ml-3"></i>دیدگاه ها</a>
+                  <a href="#"><i class="far fa-credit-card ml-3"></i>سفارشات</a>
+                  <a href="#"><i class="fas fa-ad ml-3"></i>آکهی ها</a>
+                  <a href="#"><i class="fas fa-laptop-medical ml-3"></i>دیکشنری</a>
+                  <a href="#"><i class="fas fa-user-cog ml-3"></i>تنظیمات</a>
+            </div>
+
+            <!--Content-->
+            <div class="admin-content">
+
+                  <div class="content">
+
+                        <!-- Breadcrumbs -->
+                        <div class="custom-breadcrumbs">
+
+
+                              {% block way %}
+
+                               {% endblock %}
+                        </div>
+                        <hr>
+                        <br>
+
+                        {% block content %}
+
+                        {% endblock %}
+
+                  </div>
+
+            </div>
+
+
+
+
+
+            <!-- Scripts -->
+            <script src="{% static 'js/jquery.min.js'%}"></script>
+            <script src="{% static 'js/vue2.min.js'%}"></script>
+            <script src="{% static 'js/bootstrap.min.js'%}"></script>
+            <script src="{% static 'js/bootstrap-datepicker.min.js'%}"></script>
+            <script src="{% static 'js/bootstrap-datepicker.fa.min.js'%}"></script>
+            <script src="{% static 'js/select2.min.js'%}"></script>
+            <script src="{% static 'js/admin/admin.js'%}"></script>
+      {% block script %}
+
+      {% endblock %}
+      </body>
+
+</html>

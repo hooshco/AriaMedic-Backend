@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>پنل ادمین</title>
+    <!-- Css -->
+    <link rel="stylesheet" href="../../../css/fontiran.css">
+    <link rel="stylesheet" href="../../../css/fontawesome.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="../../../css/select2.min.css">
+    <link rel="stylesheet" href="../../../css/admin/admin-main.css">
+    <link rel="stylesheet" href="../../../css/admin/admin-max992.css">
+    <link rel="stylesheet" href="../../../css/admin/admin-max768.css">
+    <link rel="stylesheet" href="../../../css/admin/admin-max576.css">
+</head>
+
+<body dir="rtl">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="#"><i class="fab fa-dashcube ml-3"></i>داشبورد</a>
+    <a href="#" target="_blank"><i class="fas fa-sitemap ml-3"></i>فروشگاه (سایت)</a>
+    <div style="width: 100%;height: 1px;background:#FFFFFF;opacity: .5"></div>
+    <a href="#"><i class="fas fa-layer-group ml-3"></i>دسته بندی ها</a>
+    <a href="#"><i class="fas fa-tags ml-3"></i>برچسب ها</a>
+    <a href="#" class="active-menu"><i class="fas fa-project-diagram ml-3"></i>محصولات</a>
+    <a href="#"><i class="fas fa-video ml-3"></i>ویدیو ها</a>
+    <a href="#"><i class="fas fa-volume-up ml-3"></i>صوت ها</a>
+    <a href="#"><i class="fas fa-book-reader ml-3"></i>کتاب ها</a>
+    <a href="#"><i class="fas fa-book ml-3"></i>تست ها</a>
+    <a href="#"><i class="far fa-building ml-3"></i>انتشارات</a>
+    <div style="width: 100%;height: 1px;background:#FFFFFF;opacity: .5"></div>
+    <a href="#"><i class="fas fa-users ml-3"></i>کاربران</a>
+    <a href="#"><i class="fas fa-comment-alt ml-3"></i>دیدگاه ها</a>
+    <a href="#"><i class="far fa-credit-card ml-3"></i>سفارشات</a>
+    <a href="#"><i class="fas fa-ad ml-3"></i>آکهی ها</a>
+    <a href="#"><i class="fas fa-laptop-medical ml-3"></i>دیکشنری</a>
+    <a href="#"><i class="fas fa-user-cog ml-3"></i>تنظیمات</a>
+</div>
+
+<!--Content-->
+<div class="admin-content">
+
+    <div class="content">
+
+        <!-- Breadcrumbs -->
+        <div class="custom-breadcrumbs">
+            <span>مسیر جاری : </span>
+            <!--Item-->
+            <a href="#" class="item mr-2">پیشخوان</a>
+            <!--Item-->
+            <a href="#" class="item mr-2">محصولاتـ</a>
+        </div>
+        <hr>
+        <br>
+
+        <!--Topic Of Content-->
+        <div class="topic-content mb-4">
+            <div class="d-flex align-items-center ">
+                <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
+                    <i class="fas fa-project-diagram ml-3"></i>
+                </span>
+                <h5>ویرایش محصول</h5>
+            </div>
+            <a href="#" class="btn btn-sm return-btn">بازگشت</a>
+        </div>
+
+        <!--=========================== Form =========================== -->
+        <form action="#" method="POST">
+
+            <div class="row">
+
+                <!-- Name -->
+                <div class="form-group col-md-3">
+                    <label for="">عنوان محصول</label>
+                    <input type="text" class="form-control" name="" id="" >
+                </div>
+
+                <!-- Categories -->
+                <div class="form-group col-md-3">
+                    <label for="">دسته بندی ها</label>
+                    <select class="form-control select2" name="" id="" multiple>
+                        <option value="">دسته بندی 1</option>
+                        <option value="">دسته بندی 2</option>
+                        <option value="">دسته بندی 3</option>
+                        <option value="">دسته بندی 4</option>
+                        <option value="">دسته بندی 5</option>
+                    </select>
+                </div>
+
+                <!-- Publisher -->
+                <div class="form-group col-md-3">
+                    <label for="">انتشارات</label>
+                    <select class="form-control select2" name="" id="">
+                        <option value=""></option>
+                        <option value="">انتشارات 1</option>
+                        <option value="">انتشارات 2</option>
+                        <option value="">انتشارات 3</option>
+                        <option value="">انتشارات 4</option>
+                        <option value="">انتشارات 5</option>
+                    </select>
+                </div>
+
+                <!-- SystemCode -->
+                <div class="form-group col-md-3">
+                    <label for="">کد سیستمی</label>
+                    <input type="text" class="form-control">
+                </div>
+
+                <!-- Description -->
+                <div class="form-group col-md-12">
+                    <label for="">توضیحات</label>
+                    <textarea type="text" id="description" class="form-control"></textarea>
+                </div>
+
+                <!-- Books -->
+                <div class="form-group col-md-3">
+                    <label for="">کتاب ها</label>
+                    <input type="text" class="form-control" readonly>
+                </div>
+
+                <!-- Test -->
+                <div class="form-group col-md-3">
+                    <label for="">تست ها</label>
+                    <input type="text" class="form-control" readonly>
+                </div>
+
+                <!-- Videos -->
+                <div class="form-group col-md-3">
+                    <label for="">ویدیو ها</label>
+                    <input type="text" class="form-control" readonly>
+                </div>
+
+                <!-- Sounds -->
+                <div class="form-group col-md-3">
+                    <label for="">صوت ها</label>
+                    <input type="text" class="form-control" readonly>
+                </div>
+
+                <!-- Price -->
+                <div class="form-group col-md-2">
+                    <label for="">قیمت</label>
+                    <input type="text" class="form-control">
+                </div>
+
+                <!-- Type -->
+                <div class="form-group col-md-3">
+                    <label for="">نوع فروش</label>
+                    <select class="form-control select2" name="" id="">
+                        <option value="0">فروش عادی</option>
+                        <option value="1">فروش حراج</option>
+                        <option value="2">تخفیف روزانه</option>
+                    </select>
+                </div>
+
+                <!-- Price -->
+                <div class="form-group col-md-2">
+                    <label for="">درصد تخفیف</label>
+                    <input type="text" class="form-control">
+                </div>
+
+                <!-- Offer Time -->
+                <div class="form-group col-md-2">
+                    <label for="">تاریخ تخفیف روزانه</label>
+                    <input type="text" class="form-control" name="" id="offerTime">
+                </div>
+
+                <!-- Visible -->
+                <div class="form-group col-md-3">
+                    <label for="">وضعیت نمایش</label>
+                    <select class="form-control select2" name="" id="">
+                        <option value="0">قابل نمایش</option>
+                        <option value="1">غیرقابل نمایش</option>
+                    </select>
+                </div>
+
+                <!-- File -->
+                <div class="form-group col-md-12">
+                    <label for="">تصاویر</label>
+                    <input type="file" class="form-control" name="" id="">
+                </div>
+
+                <!-- Last Uploads Images -->
+                <div class="form-group col-md-12">
+                    <label for="" class="d-flex">تصاویر آپلود شده</label>
+                    <div class="d-flex align-items-center">
+                        <img src="" style="height: 80px;" alt="img" class="ml-3">
+                        <img src="" style="height: 80px;" alt="img" class="ml-3">
+                        <img src="" style="height: 80px;" alt="img" class="ml-3">
+                        <img src="" style="height: 80px;" alt="img" class="ml-3">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <!-- Submit -->
+                <div class="form-group col-md-2">
+                    <label for=""></label>
+                    <input type="submit" class="form-control submit-btn" value="ویرایش">
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+
+<!-- Scripts -->
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/vue2.min.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+<script src="../../../js/bootstrap-datepicker.min.js"></script>
+<script src="../../../js/bootstrap-datepicker.fa.min.js"></script>
+<script src="../../../js/select2.min.js"></script>
+<script src="../../../js/admin/admin.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .catch( error => {
+                console.log( error );
+            } );
+
+        $('.select2').select2({});
+
+        $('#offerTime').datepicker({
+            dateFormat: "yy/m/d",
+            minDate: 0,
+            maxDate: "+100D"
+        });
+    })
+
+</script>
+</body>
+
+</html>

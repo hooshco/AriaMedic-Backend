@@ -1,0 +1,210 @@
+:root {
+    --color-1: #149c6d;
+    --color-2: #0a98af;
+    --backgroung-color: #F5F5F5;
+    --color-text: #2D2D2D;
+    --color-dark: #2b3245;
+    --color-dark-light: #323a4d;
+    --color-info: #17a2b8;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    height: 100vh;
+}
+
+body {
+    font-family: iranyekan !important;
+    font-size: 14px !important;
+    line-height: 2 !important;
+    margin: 0 !important;
+    color: var(--color-text) !important;
+    background-color: var(--backgroung-color) !important;
+    text-align: right !important;
+    overflow: hidden;
+    display: flex;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+/*
+=============== Sidebar ===============
+*/
+.sidebar {
+    min-width: 200px;
+    height: 100vh;
+    background-color: var(--color-dark);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .05);
+    overflow-y: auto;
+}
+
+.sidebar a {
+    display: block;
+    border-right: 2px solid transparent;
+!important;
+    padding: 4px 20px 2px 0;
+    color: #FFFFFF;
+    font-size: 13px;
+    margin: 5px;
+    font-weight: lighter;
+    opacity: .5;
+}
+
+.sidebar a:hover {
+    opacity: 1 !important;
+    transition: .2s;
+}
+
+.active-menu {
+    background-color: var(--color-dark-light) !important;
+    border-right: 2px solid var(--color-1) !important;
+    font-weight: normal !important;
+    opacity: 1 !important;
+}
+
+.active-menu i {
+    color: var(--color-1);
+}
+
+.custom-breadcrumbs {
+    display: flex;
+    align-items: center;
+}
+
+.custom-breadcrumbs a.item {
+    padding: 2px 20px;
+    background-color: var(--backgroung-color);
+    color: var(--color-text);
+    border-radius: 5px;
+    font-size: 12px;
+    opacity: 1;
+    transition: .3s;
+}
+
+.custom-breadcrumbs a.item:hover {
+    opacity: .6;
+    transition: .3s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.table th, .table td {
+    font-size: 12px;
+    padding: 7px 10px !important;
+}
+
+.table th {
+    font-weight: bold !important;
+}
+
+table.table a {
+    padding: 2px 10px !important;
+    font-size: 12px !important;
+}
+
+input, select {
+    font-size: 12px !important;
+}
+
+label {
+    font-weight: bold !important;
+}
+
+.submit-btn {
+    font-size: 12px;
+    color: #FFFFFF !important;
+    background-color: var(--color-dark);
+}
+
+.return-btn {
+    font-size: 12px;
+    border: 1px solid var(--color-dark);
+    color: var(--color-dark);
+    transition: .3s;
+}
+
+.return-btn:hover {
+    color: #FFFFFF;
+    background-color: var(--color-dark);
+    transition: .3s;
+}
+
+.select2 {
+    font-size: 12px;
+}
+
+.swal-button {
+    padding: 2px 16px !important;
+    border-radius: 5px !important;
+    font-size: 12px !important;
+}
+
+.select2-search__field {
+    font-size: 12px !important;
+    padding: 0px 10px !important;
+    margin: 0 !important;
+}
+
+.select2-search__field ul {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.select2-selection .select2-selection--multiple,
+.select2 .select2-container .select2-container--default .select2-container--focus,
+.select2-hidden-accessible {
+    height: 10px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.select2-container .select2-selection--multiple .select2-selection__rendered {
+    display: block !important;
+}
+
+ul.select2-selection__rendered {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.select2-container .select2-selection--single {
+    height: 30px !important;
+}
+.ui-datepicker-next , .ui-datepicker-prev {
+    background-color: var(--backgroung-color) !important;
+    cursor: pointer;
+}
+
+
+/*
+=============== Content ===============
+*/
+.admin-content {
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+}
+
+.admin-content .content {
+    margin: 20px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .05);
+}
+
+.admin-content .content .topic-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-content .content .topic-content i {
+    margin: 0 !important;
+}

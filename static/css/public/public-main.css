@@ -1,0 +1,26 @@
+:root {
+    --color-1: #149c6d;
+    --color-2: #0a98af;
+    --backgroung-color: #F5F5F5;
+    --color-text: #2D2D2D;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent
+}
+
+body {
+    font-family: iranyekan !important;
+    font-size: 14px !important;
+    line-height: 2 !important;
+    margin: 0 !important;
+    color: #212529 !important;
+    background-color: var(--backgroung-color) !important;
+    text-align: right !important;
+    overflow: hidden;
+}
+
+/*
+=============== Navigation ===============
+*/

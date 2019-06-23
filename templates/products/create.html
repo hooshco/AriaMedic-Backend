@@ -1,0 +1,178 @@
+{% extends 'parent.html' %}
+{% block active %}active-menu{% endblock %}
+{% block title %}افزودن محصول {% endblock %}
+{% block way %}
+            <a href="{% url 'dashboard' %}" class="item mr-2">پیشخوان</a>
+            <a href="{% url 'product' %}" class="item mr-2">محصولاتـ</a>
+            <a href="#" class="item mr-2">افزودن محصول</a>
+{% endblock %}
+{% block content %}
+        <!--Topic Of Content-->
+        <div class="topic-content mb-4">
+            <div class="d-flex align-items-center ">
+                <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
+                    <i class="fas fa-project-diagram ml-3"></i>
+                </span>
+                <h5>افزودن محصول</h5>
+            </div>
+            <a href="{% url 'product' %}" class="btn btn-sm return-btn">بازگشت</a>
+        </div>
+        
+        <!--=========================== Form =========================== -->
+        <form action="{% url 'insert_product' %}" method="POST" enctype="multipart/form-data">
+            
+            <div class="row">
+                
+                <!-- Name -->
+                <div class="form-group col-md-3">
+                    <label for="">عنوان محصول</label>
+                    <input type="text" class="form-control" name="title" id="" >
+                </div>
+                <!-- Categories -->
+                <div class="form-group col-md-3">
+                    <label for="">دسته بندی ها</label>
+
+                    <select class="form-control select2" name="category" id="" multiple>
+                        <option value=""></option>
+                        {% for category in categorys %}
+                            <option value="{{ category.id }}">{{ category.title }}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                <!-- Publisher -->
+                <div class="form-group col-md-3">
+                    <label for="">انتشارات</label>
+                    <select class="form-control select2" name="publisher" id="">
+                        <option value=""></option>
+                        {% for publisher in publishers %}
+                            <option value="{{ publisher.id }}">{{ publisher.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- SystemCode -->
+                <div class="form-group col-md-3">
+                    <label for="">کد سیستمی</label>
+                    <input type="text" class="form-control" name="system_code">
+                </div>
+
+                <!-- Description -->
+                <div class="form-group col-md-12">
+                    <label for="">توضیحات</label>
+                    <textarea type="text" id="description" name="description" class="form-control"></textarea>
+                </div>
+
+                <!-- Price -->
+                <div class="form-group col-md-2">
+                    <label for="">قیمت</label>
+                    <input type="text" name="price" class="form-control">
+                </div>
+
+                <!-- Type -->
+                <div class="form-group col-md-3">
+                    <label for="">نوع فروش</label>
+                    <select class="form-control select2" name="sell_type" id="sell_type">
+                        <option value="0">فروش عادی</option>
+                        <option value="1">فروش حراج</option>
+                        <option value="2">تخفیف روزانه</option>
+                    </select>
+                </div>
+
+                <!-- Price -->
+                <div class="form-group col-md-2" id="discount_percent" style="display: none">
+                    <label for="">درصد تخفیف</label>
+                    <input type="text" class="form-control" name="discount_percent">
+                </div>
+
+                <!-- Offer Time -->
+                <div class="form-group col-md-2" id="discount_time" style="display: none">
+                    <label for="">تاریخ تخفیف روزانه</label>
+                    <input type="text" class="form-control" name="discount_time" id="offerTime">
+                </div>
+
+                <!-- Visible -->
+                <div class="form-group col-md-3">
+                    <label for="">وضعیت نمایش</label>
+                    <select class="form-control select2" name="is_active" id="">
+                        <option value="0">قابل نمایش</option>
+                        <option value="1">غیرقابل نمایش</option>
+                    </select>
+                </div>
+
+                <!-- Offer Time -->
+                <div class="form-group col-md-6">
+                    <label for="">تصاویر محصول</label>
+                    <input type="file" class="form-control" name="images" id="" multiple>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <!-- Submit -->
+                <div class="form-group col-md-2">
+                    <label for=""></label>
+                    <input type="submit" class="form-control submit-btn" value="ثبت">
+                </div>
+            </div>
+            
+        </form>
+
+{% endblock %}
+
+
+
+
+
+{% block script %}
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
+
+
+    <script>
+
+
+
+
+
+    $(document).ready(function () {
+
+        $('.select2').select2({
+            placeholder:"انتخاب کنید",
+            allowClear: true,
+        });
+        $('#sell_type').select2().on("change", function (e) {
+            var sell_type = $('#sell_type').val()
+
+            if(sell_type === "1"){
+                $("#discount_percent").css("display","block")
+                $("#discount_time").css("display","none")
+            }else if(sell_type === "2"){
+                $("#discount_time").css("display","block")
+                $("#discount_percent").css("display","block")
+
+            }else{
+                $("#discount_time").css("display","none")
+                $("#discount_percent").css("display","none")
+            }
+        });
+
+        $('#offerTime').datepicker({
+            dateFormat: "yy/m/d",
+            minDate: 0,
+            maxDate: "+100D"
+        });
+
+
+        ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .catch( error => {
+                console.log( error );
+            } );
+    })
+
+    </script>
+
+{% endblock %}
+
+

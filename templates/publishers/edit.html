@@ -1,0 +1,91 @@
+
+{% extends 'parent.html' %}
+{% block active %}active-menu{% endblock %}
+{% block title %} ویرایش انتشارات {% endblock %}
+{% block way %}
+            <a href="{% url 'dashboard' %}" class="item mr-2">پیشخوان</a>
+            <a href="{% url 'publisher' %}" class="item mr-2">انتشارات </a>
+            <a href="#" class="item mr-2">ویرایش {{ publisher.title }} </a>
+{% endblock %}
+    {% block content %}
+        <!--Topic Of Content-->
+        <div class="topic-content">
+            <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center">
+                    <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
+                        <i class="fas fa-tag ml-3"></i>
+                     </span>
+                    <h5>ویرایش انتشارات</h5>
+                </div>
+            </div>
+        </div>
+
+        <!--========================= Form =========================-->
+    <form action="{% url 'update_publisher' publisher.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="row">
+
+                <!-- Name -->
+                <div class="form-group col-md-4">
+                    <label for="">عنوان</label>
+                    <input type="text" name="title" value="{{ publisher.title }}" class="form-control">
+                </div>
+
+                <!-- Background -->
+                <div class="form-group col-md-4">
+                    <label for="">تصویر پس زمینه</label>
+                    <input type="file" name="background" class="file form-control">
+                </div>
+
+            <div class="form-group col-md-4">
+                    <label for="">تصویر پروفایل</label>
+                    <input type="file" name="profile_image" class="file form-control">
+                </div>
+
+                <!-- Description -->
+                <div class="form-group col-md-12">
+                    <label for="">توضیحات</label>
+                    <textarea type="text" id="description" name="description"  class="form-control">{{ publisher.description }}</textarea>
+                </div>
+                <!-- Link -->
+                <div class="form-group col-md-12">
+                    <label for="">لینک</label>
+                    <input type="text" name="link" id="" value="{{ publisher.link }}" class="form-control">
+                </div>
+
+                <!-- Parent -->
+
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="" >تصویر فعلی پس زمینه</label>
+                    <img  src="{{ publisher.profileImage }}" style="width: 100px;border-radius: 50%"/>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="" >تصویر فعلی پروفایل</label>
+                    <img  src="{{ publisher.backgroundImage }}" style="width: 100px;border-radius: 50%"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label for="" ></label>
+                    <input type="submit" value="ثبت" class="btn btn-info form-control">
+                </div>
+            </div>
+
+
+
+
+        </form>
+    {% endblock %}
+{% block script %}
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
+    <script>
+    ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .catch( error => {
+                console.log( error );
+            } );
+    </script>
+
+{% endblock %}

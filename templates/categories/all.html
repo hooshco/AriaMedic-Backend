@@ -1,0 +1,108 @@
+{% extends 'parent.html' %}
+{% block active %}active-menu{% endblock %}
+{% block title %}دسته بندی ها {% endblock %}
+{% block way %}
+            <a href="{% url 'dashboard' %}" class="item mr-2">پیشخوان</a>
+            <a href="{% url 'category' %}" class="item mr-2">دسته بندی ها</a>
+{% endblock %}
+    {% block content %}
+        <!--Topic Of Content-->
+        <div class="topic-content">
+            <div class="d-flex align-items-center">
+                <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
+                    <i class="fas fa-layer-group ml-3"></i>
+                </span>
+                <h5>افزودن دسته بندی</h5>
+            </div>
+        </div>
+
+        <!--========================= Form =========================-->
+        <form action="{% url 'category' %}" method="POST">
+        {% csrf_token %}
+            <div class="row my-4">
+
+                <!-- Name -->
+                <div class="form-group col-md-3">
+                    <label for="">عنوان</label>
+                    <input type="text" name="title" id="" class="form-control">
+                </div>
+
+                <!-- Description -->
+                <div class="form-group col-md-3">
+                    <label for="">توضیحات</label>
+                    <input type="text" name="description" id="" class="form-control">
+                </div>
+
+                <!-- Parent -->
+                <div class="form-group col-md-3">
+                    <label for="">دسته بندی (اصلی - فرزند)</label>
+                    <select name="parentId" id="" class="form-control">
+                    <option value="">انتخاب کنید</option>
+                        {% for category in categorys %}
+                        <option value="{{ category.id }}">{{ category.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Parent -->
+                <div class="form-group col-md-3">
+                    <label for="" style="margin-top: 16px"></label>
+                    <input type="submit" value="ثبت" class="btn form-control" style="background-color: var(--color-dark);color: #FFFFFF;">
+                </div>
+                
+            </div>
+        </form>
+
+        <!--Topic Of Content-->
+        <div class="topic-content my-4">
+            <div class="d-flex align-items-center">
+                <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
+                    <i class="fas fa-layer-group ml-3"></i>
+                </span>
+                <h5>دسته بندی ها</h5>
+            </div>
+        </div>
+
+        <!--Search-->
+        <input type="text" class="form-control mb-3" placeholder="جستجو در دسته بندی ها ...">
+
+        <!--========================= Table =========================-->
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">عنوان</th>
+                <th scope="col">توضیحات</th>
+                <th scope="col">دسته بندی</th>
+                <th scope="col">تنظیمات</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for category in categorys %}
+                <tr>
+                <td class="">{{ category.title }}</td>
+                <td class="font-weight-light">{{ category.description }}</td>
+                    {% if category.parentId %}
+                <td>
+
+                             <span>زیر منو:  {{ category.parentTitle }}</span>
+
+                </td>
+                    {% else %}
+                        <td>
+                        <span class="font-weight-bold d-flex align-items-center">
+                            <i class="fas fa-atom ml-1"></i>
+                             <span>دسته بندی اصلی</span>
+                        </span>
+                        </td>
+                    {% endif %}
+                <td>
+                    <a href="{% url 'update_category' category.id %}" class="btn btn-sm btn-warning">ویرایش</a>
+                    <a href="{% url 'delete_category' category.id %}" class="btn btn-sm btn-outline-danger">حذف</a>
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+{% endblock %}
