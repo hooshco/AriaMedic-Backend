@@ -1,10 +1,10 @@
 {% extends 'parent.html' %}
 {% block active %}active-menu{% endblock %}
-{% block title %} ویرایش ویدئو {% endblock %}
+{% block title %} ویرایش کتاب {% endblock %}
 {% block way %}
             <a href="{% url 'dashboard' %}" class="item mr-2">پیشخوان</a>
-            <a href="{% url 'video' %}" class="item mr-2">ویدئو </a>
-    <a href="{% url 'video' %}" class="item mr-2">ویرایش ویدئو {{ video.title }} </a>
+            <a href="{% url 'video' %}" class="item mr-2">کتاب </a>
+    <a href="{% url 'video' %}" class="item mr-2">ویرایش کتاب {{ book.title }} </a>
 {% endblock %}
     {% block content %}
         <div class="topic-content mb-4">
@@ -12,27 +12,27 @@
                 <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
                     <i class="fas fa-video ml-3"></i>
                 </span>
-                <h5>ویرایش ویدیو</h5>
+                <h5>ویرایش کتاب</h5>
             </div>
-            <a href="{% url 'video' %}" class="btn btn-sm return-btn">بازگشت</a>
+            <a href="{% url 'book' %}" class="btn btn-sm return-btn">بازگشت</a>
         </div>
 
         <!--=========================== Form =========================== -->
 
-            <form action="{% url 'update_video' video.id %}" method="POST" enctype="multipart/form-data">
+            <form action="{% url 'update_book' book.id %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
 
                 <!-- Name -->
                 <div class="form-group col-md-3">
                     <label for="">عنوان</label>
-                    <input type="text" class="form-control" value="{{ video.title }}" name="title" id="" >
+                    <input type="text" class="form-control" value="{{ book.title }}" name="title" id="" >
                 </div>
 
                 <!-- Teacher -->
                 <div class="form-group col-md-3">
                     <label for="">مدرس</label>
-                    <input type="text" class="form-control" value="{{ video.teacher }}" name="teacher" id="" >
+                    <input type="text" class="form-control" value="{{ book.teacher }}" name="teacher" id="" >
                 </div>
 
                 <!-- Product -->
@@ -41,7 +41,7 @@
                     <select class="form-control select2" name="product" id="">
                         <option value=""></option>
                         {% for product in products %}
-                            {% if product.id == video.productId %}
+                            {% if product.id == book.productId %}
                                 <option value="{{ product.id }}" selected>{{ product.product_name }}</option>
                             {% else %}
                                 <option value="{{ product.id }}">{{ product.product_name }}</option>
@@ -53,21 +53,21 @@
 
                 <!-- Teacher -->
                 <div class="form-group col-md-3">
-                    <label for="">تاریخ انتشار ویدیو</label>
-                    <input type="text" class="form-control" value="{{ video.publish_date }}" name="publish_date" id="datepicker">
+                    <label for="">تاریخ انتشار کتاب</label>
+                    <input type="text" class="form-control" value="{{ book.publish_date }}" name="publish_date" id="datepicker">
                 </div>
 
                  <div class="form-group col-md-3">
-                    <label for="">مدت زمان ویدئو</label>
-                    <input type="text" class="form-control" value="{{ video.time_duration }}" name="time_duration" id="" >
+                    <label for="">تعداد صفحات</label>
+                    <input type="text" class="form-control" value="{{ book.page_count }}" name="page_count" id="" >
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="">زبان ویدئو</label>
-                    <input type="text" class="form-control" value="{{ video.language }}" name="language" id="" >
+                    <label for="">زبان کتاب</label>
+                    <input type="text" class="form-control" value="{{ book.language }}" name="language" id="" >
                 </div>
                 <!-- Teacher -->
                 <div class="form-group col-md-6">
-                    <label for="">فایل (ویدیو)</label>
+                    <label for="">فایل (کتاب)</label>
                     <input type="file" class="form-control" name="video_file">
                 </div>
 

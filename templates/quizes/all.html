@@ -1,9 +1,9 @@
 {% extends 'parent.html' %}
 {% block active %}active-menu{% endblock %}
-{% block title %} صدا ها {% endblock %}
+{% block title %} آزمون ها {% endblock %}
 {% block way %}
             <a href="{% url 'dashboard' %}" class="item mr-2">پیشخوان</a>
-            <a href="{% url 'sound' %}" class="item mr-2">صداها </a>
+            <a href="{% url 'quize' %}" class="item mr-2">آزمون </a>
 {% endblock %}
     {% block content %}
 
@@ -13,7 +13,7 @@
                     <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
                         <i class="fas fa-video ml-3"></i>
                      </span>
-                    <h5>افزودن صدا</h5>
+                    <h5>افزودن آزمون</h5>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
 
         <!--Topic Of Content-->
         <div class="topic-content mb-4">
-            <form action="{% url 'sound' %}" method="POST" enctype="multipart/form-data">
+            <form action="{% url 'quize' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
 
@@ -50,22 +50,22 @@
 
                 <!-- Teacher -->
                 <div class="form-group col-md-3">
-                    <label for="">تاریخ انتشار صدا</label>
+                    <label for="">تاریخ انتشار آزمون</label>
                     <input type="text" class="form-control" name="publish_date" id="datepicker">
                 </div>
 
                  <div class="form-group col-md-3">
-                    <label for="">مدت زمان صدا</label>
-                    <input type="text" class="form-control" name="time_duration" id="" >
+                    <label for="">تعداد سوالات آزمون</label>
+                    <input type="text" class="form-control" name="quize_count" id="" >
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="">زبان صدا</label>
+                    <label for="">زبان آزمون</label>
                     <input type="text" class="form-control" name="language" id="" >
                 </div>
                 <!-- Teacher -->
                 <div class="form-group col-md-6">
-                    <label for="">فایل (صدا)</label>
-                    <input type="file" class="form-control" name="sound_file">
+                    <label for="">فایل (آزمون)</label>
+                    <input type="file" class="form-control" name="quize_file">
                 </div>
 
             </div>
@@ -82,7 +82,7 @@
         </div>
 
         <!--Search-->
-        <input type="text" class="form-control mb-3" placeholder="جستجو در صدا ها...">
+        <input type="text" class="form-control mb-3" placeholder="جستجو در آزمون ها...">
 
         <!--========================= Table =========================-->
         <div class="table-responsive text-nowrap">
@@ -93,30 +93,30 @@
                 <th scope="col">مدرس</th>
                 <th scope="col">تاریخ انتشار</th>
                 <th scope="col">حجم فایل</th>
-                <th scope="col">مدت زمان</th>
+                <th scope="col">تعداد سوالات</th>
                 <th scope="col">زبان</th>
                 <th scope="col">تنظیمات</th>
             </tr>
             </thead>
             <tbody>
-            {% for sound in sounds %}
+            {% for quize in quizes %}
                 <tr>
                     <td class="d-flex align-items-center">
                         <i class="fas fa-grip-vertical ml-1"></i>
-                        <span>{{ sound.title }}</span>
+                        <span>{{ quize.title }}</span>
                     </td>
-                    <td class="font-weight-light">{{ sound.teacher }}</td>
-                    <td>{{ sound.publish_date }}</td>
+                    <td class="font-weight-light">{{ quize.teacher }}</td>
+                    <td>{{ quize.publish_date }}</td>
                     <td>
-                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">{{ sound.size }}</span>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">{{ quize.size }}</span>
                     </td>
-                    <td>{{ sound.time_duration }}</td>
+                    <td>{{ quize.question_count }}</td>
                     <td class="font-weight-bold">
-                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">{{ sound.language }}</span>
+                        <span style="background-color:#F5F5F5;padding: 2px 10px;border-radius:3px">{{ quize.language }}</span>
                     </td>
                     <td>
-                        <a href="{% url 'update_sound' sound.id %}" class="btn btn-sm btn-warning">ویرایش</a>
-                        <a href="{% url 'delete_sound' sound.id %}" class="btn btn-sm btn-outline-danger">حذف</a>
+                        <a href="{% url 'update_quize' quize.id %}" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="{% url 'delete_quize' quize.id %}" class="btn btn-sm btn-outline-danger">حذف</a>
                     </td>
                 </tr>
             {% endfor %}

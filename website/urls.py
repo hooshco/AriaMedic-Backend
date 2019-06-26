@@ -38,7 +38,23 @@ urlpatterns = [
 
     path('panel/products',views.products,name="product"),
     path('panel/products/insert',views.insert_products,name="insert_product"),
-    # path('panel/category/update/<int:id>',views.delete_category,name="delete_category"),
-    # path('panel/category/delete/<int:id>',views.delete_category,name="delete_category"),
+    path('panel/product/update/<int:id>',views.update_product,name="update_product"),
+    path('panel/product/delete/<int:id>',views.delete_product,name="delete_product"),
+
+    path('panel/video',views.video,name="video"),
+    path('panel/video/update/<int:id>',views.update_video,name="update_video"),
+    path('panel/video/delete/<int:id>',views.delete_video,name="delete_video"),
+
+    path('panel/sound',views.sound,name="sound"),
+    path('panel/sound/update/<int:id>',views.update_sound,name="update_sound"),
+    path('panel/sound/delete/<int:id>',views.delete_sound,name="delete_sound"),
+
+    path('panel/book',views.book,name="book"),
+    path('panel/book/update/<int:id>',views.update_book,name="update_book"),
+    path('panel/book/delete/<int:id>',views.delete_book,name="delete_book"),
+
+    path('panel/quize',views.quize,name="quize"),
+    path('panel/quize/update/<int:id>',views.update_quize,name="update_quize"),
+    path('panel/quize/delete/<int:id>',views.delete_quize,name="delete_quize"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

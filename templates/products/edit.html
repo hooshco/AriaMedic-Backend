@@ -1,64 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>پنل ادمین</title>
-    <!-- Css -->
-    <link rel="stylesheet" href="../../../css/fontiran.css">
-    <link rel="stylesheet" href="../../../css/fontawesome.min.css">
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="../../../css/select2.min.css">
-    <link rel="stylesheet" href="../../../css/admin/admin-main.css">
-    <link rel="stylesheet" href="../../../css/admin/admin-max992.css">
-    <link rel="stylesheet" href="../../../css/admin/admin-max768.css">
-    <link rel="stylesheet" href="../../../css/admin/admin-max576.css">
-</head>
-
-<body dir="rtl">
-
-<!-- Sidebar -->
-<div class="sidebar">
-    <a href="#"><i class="fab fa-dashcube ml-3"></i>داشبورد</a>
-    <a href="#" target="_blank"><i class="fas fa-sitemap ml-3"></i>فروشگاه (سایت)</a>
-    <div style="width: 100%;height: 1px;background:#FFFFFF;opacity: .5"></div>
-    <a href="#"><i class="fas fa-layer-group ml-3"></i>دسته بندی ها</a>
-    <a href="#"><i class="fas fa-tags ml-3"></i>برچسب ها</a>
-    <a href="#" class="active-menu"><i class="fas fa-project-diagram ml-3"></i>محصولات</a>
-    <a href="#"><i class="fas fa-video ml-3"></i>ویدیو ها</a>
-    <a href="#"><i class="fas fa-volume-up ml-3"></i>صوت ها</a>
-    <a href="#"><i class="fas fa-book-reader ml-3"></i>کتاب ها</a>
-    <a href="#"><i class="fas fa-book ml-3"></i>تست ها</a>
-    <a href="#"><i class="far fa-building ml-3"></i>انتشارات</a>
-    <div style="width: 100%;height: 1px;background:#FFFFFF;opacity: .5"></div>
-    <a href="#"><i class="fas fa-users ml-3"></i>کاربران</a>
-    <a href="#"><i class="fas fa-comment-alt ml-3"></i>دیدگاه ها</a>
-    <a href="#"><i class="far fa-credit-card ml-3"></i>سفارشات</a>
-    <a href="#"><i class="fas fa-ad ml-3"></i>آکهی ها</a>
-    <a href="#"><i class="fas fa-laptop-medical ml-3"></i>دیکشنری</a>
-    <a href="#"><i class="fas fa-user-cog ml-3"></i>تنظیمات</a>
-</div>
-
-<!--Content-->
-<div class="admin-content">
-
-    <div class="content">
-
-        <!-- Breadcrumbs -->
-        <div class="custom-breadcrumbs">
-            <span>مسیر جاری : </span>
+{% extends 'parent.html' %}
+{% block active %}active-menu{% endblock %}
+{% block title %}محصولات {% endblock %}
+{% block way %}
+            <a href="{% url 'dashboard' %}" class="item mr-2">پیشخوان</a>
             <!--Item-->
-            <a href="#" class="item mr-2">پیشخوان</a>
-            <!--Item-->
-            <a href="#" class="item mr-2">محصولاتـ</a>
-        </div>
-        <hr>
-        <br>
-
-        <!--Topic Of Content-->
+            <a href="{% url 'product' %}" class="item mr-2">محصولاتـ</a>
+            <a href="#" class="item mr-2">ویرایش {{ product.product_name }}</a>
+{% endblock %}
+{% block content %}
         <div class="topic-content mb-4">
             <div class="d-flex align-items-center ">
                 <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
@@ -70,111 +19,122 @@
         </div>
 
         <!--=========================== Form =========================== -->
-        <form action="#" method="POST">
-
+        <form action="{% url 'update_product' product.id %}" method="POST">
+            {% csrf_token %}
             <div class="row">
 
                 <!-- Name -->
                 <div class="form-group col-md-3">
                     <label for="">عنوان محصول</label>
-                    <input type="text" class="form-control" name="" id="" >
+                    <input type="text" class="form-control" name="title" value="{{ product.product_name }}" id="" >
                 </div>
 
                 <!-- Categories -->
                 <div class="form-group col-md-3">
                     <label for="">دسته بندی ها</label>
-                    <select class="form-control select2" name="" id="" multiple>
-                        <option value="">دسته بندی 1</option>
-                        <option value="">دسته بندی 2</option>
-                        <option value="">دسته بندی 3</option>
-                        <option value="">دسته بندی 4</option>
-                        <option value="">دسته بندی 5</option>
+                    <select class="form-control select2" name="category" id="" multiple>
+                        <option value=""></option>
+                        {% for category in categorys %}
+                            {% for pcat in product.categorys %}
+                            {% if category.title in pcat.CatName %}
+                                <option value="{{ category.id }}" selected>{{ category.title }}</option>
+                             {% else %}
+                                <option value="{{ category.id }}">{{category.title }}</option>
+                            {% endif %}
+                            {% endfor %}
+
+                        {% endfor %}
+
                     </select>
                 </div>
 
                 <!-- Publisher -->
                 <div class="form-group col-md-3">
                     <label for="">انتشارات</label>
-                    <select class="form-control select2" name="" id="">
+                    <select class="form-control select2" name="publisher" id="">
                         <option value=""></option>
-                        <option value="">انتشارات 1</option>
-                        <option value="">انتشارات 2</option>
-                        <option value="">انتشارات 3</option>
-                        <option value="">انتشارات 4</option>
-                        <option value="">انتشارات 5</option>
+                        {% for publisher in publishers %}
+                            {% if publisher.title == product.publisher %}
+                                <option value="{{ publisher.id }}" selected>{{ publisher.title }}</option>
+                             {% else %}
+                                <option value="{{ publisher.id }}">{{ publisher.title }}</option>
+                            {% endif %}
+
+                        {% endfor %}
+
                     </select>
                 </div>
 
                 <!-- SystemCode -->
                 <div class="form-group col-md-3">
                     <label for="">کد سیستمی</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="system_code" value="{{ product.system_code }}">
                 </div>
 
                 <!-- Description -->
                 <div class="form-group col-md-12">
                     <label for="">توضیحات</label>
-                    <textarea type="text" id="description" class="form-control"></textarea>
+                    <textarea type="text" id="description" name="description" class="form-control">{{ product.description }}</textarea>
                 </div>
 
                 <!-- Books -->
                 <div class="form-group col-md-3">
                     <label for="">کتاب ها</label>
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" data-toggle="modal" data-target="#books" readonly>
                 </div>
 
                 <!-- Test -->
                 <div class="form-group col-md-3">
                     <label for="">تست ها</label>
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" data-toggle="modal" data-target="#tests" readonly>
                 </div>
 
                 <!-- Videos -->
                 <div class="form-group col-md-3">
                     <label for="">ویدیو ها</label>
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" data-toggle="modal" data-target="#videos" readonly value="{% for video in videos %}{{ video.title }} , {% endfor %}">
                 </div>
 
                 <!-- Sounds -->
                 <div class="form-group col-md-3">
                     <label for="">صوت ها</label>
-                    <input type="text" class="form-control" readonly>
+                    <input type="text" class="form-control" data-toggle="modal" data-target="#sounds" readonly>
                 </div>
 
                 <!-- Price -->
                 <div class="form-group col-md-2">
                     <label for="">قیمت</label>
-                    <input type="text" class="form-control">
+                    <input type="text" value="{{ product.price }}" name="price" class="form-control">
                 </div>
 
                 <!-- Type -->
                 <div class="form-group col-md-3">
                     <label for="">نوع فروش</label>
-                    <select class="form-control select2" name="" id="">
-                        <option value="0">فروش عادی</option>
-                        <option value="1">فروش حراج</option>
-                        <option value="2">تخفیف روزانه</option>
+                    <select class="form-control select2" name="sell_type" id="sell_type">
+                        <option value="0" {% if product.sell_type == 0 %}selected{% endif %}>فروش عادی</option>
+                        <option value="1" {% if product.sell_type == 1 %}selected{% endif %}>فروش حراج</option>
+                        <option value="2" {% if product.sell_type == 2 %}selected{% endif %}>تخفیف روزانه</option>
                     </select>
                 </div>
 
                 <!-- Price -->
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-2" id="discount_percent"  {% if product.sell_type == 0 %} style="display: none"{% endif %}>
                     <label for="">درصد تخفیف</label>
-                    <input type="text" class="form-control">
+                    <input type="text" value="{{ product.discount }}" name="discount_percent"  class="form-control">
                 </div>
 
                 <!-- Offer Time -->
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-2" id="discount_time" {% if product.sell_type == 0 or product.sell_type == 1 %} style="display: none"{% endif %}>
                     <label for="">تاریخ تخفیف روزانه</label>
-                    <input type="text" class="form-control" name="" id="offerTime">
+                    <input type="text" class="form-control" name="discount_time" id="offerTime">
                 </div>
 
                 <!-- Visible -->
                 <div class="form-group col-md-3">
                     <label for="">وضعیت نمایش</label>
-                    <select class="form-control select2" name="" id="">
-                        <option value="0">قابل نمایش</option>
-                        <option value="1">غیرقابل نمایش</option>
+                    <select class="form-control select2" name="is_active" id="">
+                        <option value="0" {% if product.is_active %}selected{% endif %}>قابل نمایش</option>
+                        <option value="1" {% if not product.is_active %}selected{% endif %}>غیرقابل نمایش</option>
                     </select>
                 </div>
 
@@ -188,10 +148,10 @@
                 <div class="form-group col-md-12">
                     <label for="" class="d-flex">تصاویر آپلود شده</label>
                     <div class="d-flex align-items-center">
-                        <img src="" style="height: 80px;" alt="img" class="ml-3">
-                        <img src="" style="height: 80px;" alt="img" class="ml-3">
-                        <img src="" style="height: 80px;" alt="img" class="ml-3">
-                        <img src="" style="height: 80px;" alt="img" class="ml-3">
+                        {% for image in product.images %}
+                        <img src="{{ image.url }}" style="height: 80px;" alt="img" class="ml-3">
+                        {% endfor %}
+
                     </div>
                 </div>
 
@@ -207,22 +167,59 @@
 
         </form>
 
-    </div>
 
+
+
+
+
+    <!-- Modal -->
+<div class="modal fade" id="videos" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h5 class="modal-title" id="exampleModalScrollableTitle">ویدئو ها</h5>
+
+      </div>
+      <div class="modal-body">
+            <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">نام</th>
+        <th scope="col">تنظیمات</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for video in videos %}
+    <tr>
+      <td>{{ video.title }}</td>
+        <td>
+        <a href="{% url 'update_video' video.id %}" class="btn btn-sm btn-warning">ویرایش</a>
+        <a href="{% url 'delete_video' video.id %}" class="btn btn-sm btn-outline-danger">حذف</a>
+       </td>
+
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 
 
 
 
-<!-- Scripts -->
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/vue2.min.js"></script>
-<script src="../../../js/bootstrap.min.js"></script>
-<script src="../../../js/bootstrap-datepicker.min.js"></script>
-<script src="../../../js/bootstrap-datepicker.fa.min.js"></script>
-<script src="../../../js/select2.min.js"></script>
-<script src="../../../js/admin/admin.js"></script>
+
+{% endblock %}
+
+
+
+
+
+{% block script %}
 <script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
 
 <script>
@@ -236,7 +233,25 @@
                 console.log( error );
             } );
 
-        $('.select2').select2({});
+        $('.select2').select2({
+            placeholder:"انتخاب کنید",
+
+        });
+        $('#sell_type').select2().on("change", function (e) {
+            var sell_type = $('#sell_type').val()
+
+            if(sell_type === "1"){
+                $("#discount_percent").css("display","block")
+                $("#discount_time").css("display","none")
+            }else if(sell_type === "2"){
+                $("#discount_time").css("display","block")
+                $("#discount_percent").css("display","block")
+
+            }else{
+                $("#discount_time").css("display","none")
+                $("#discount_percent").css("display","none")
+            }
+        });
 
         $('#offerTime').datepicker({
             dateFormat: "yy/m/d",
@@ -246,6 +261,4 @@
     })
 
 </script>
-</body>
-
-</html>
+{% endblock %}

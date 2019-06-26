@@ -155,15 +155,17 @@ class Product(BaseModel):
     product_name = models.TextField()
     description = models.TextField()
     price = models.IntegerField()
-    discount = models.IntegerField()
-    category = models.ForeignKey(Category,on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher,on_delete=models.CASCADE)
     discount_percent = models.IntegerField(null=True,blank=True)
-    discount_time = models.IntegerField(null=True,blank=True)
+    discount_time = models.DateTimeField(null=True,blank=True)
     refrence = models.TextField()
     system_code = models.TextField()
     is_active = models.BooleanField()
+    sell_type = models.IntegerField()
 
+class ProductCategory(BaseModel):
+    product = models.ForeignKey(Product, related_name='category', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 class ProductImage(BaseModel):
     product = models.ForeignKey(Product, related_name='images',on_delete=models.CASCADE)
@@ -171,32 +173,29 @@ class ProductImage(BaseModel):
 
 class Video(BaseModel):
     title = models.TextField()
-    filename = models.TextField()
+    file = models.FileField(upload_to="uploads/videos")
     teacher = models.TextField()
     publish_date = models.DateTimeField()
-    size = models.IntegerField()
-    time_duration = models.IntegerField()
+    time_duration = models.TextField()
     language = models.TextField()
     product = models.ForeignKey(Product,related_name="videos", on_delete=models.CASCADE)
 
 
 class Sound(BaseModel):
     title = models.TextField()
-    filename = models.TextField()
+    file = models.FileField(upload_to="uploads/sounds")
     teacher = models.TextField()
     publish_date = models.DateTimeField()
-    size = models.IntegerField()
-    time_duration = models.IntegerField()
+    time_duration = models.TextField()
     language = models.TextField()
     product = models.ForeignKey(Product,related_name="sounds", on_delete=models.CASCADE)
 
 
 class Quize(BaseModel):
     title = models.TextField()
-    filename = models.TextField()
+    file = models.FileField(upload_to="uploads/quizes")
     teacher = models.TextField()
     publish_date = models.DateTimeField()
-    size = models.IntegerField()
     question_count = models.IntegerField()
     language = models.TextField()
     product = models.ForeignKey(Product,related_name="quizes", on_delete=models.CASCADE)
@@ -204,11 +203,10 @@ class Quize(BaseModel):
 
 class Book(BaseModel):
     title = models.TextField()
-    filename = models.TextField()
+    file = models.FileField(upload_to="uploads/books")
     teacher = models.TextField()
     publish_date = models.DateTimeField()
-    size = models.IntegerField()
-    question_count = models.IntegerField()
+    page_count = models.IntegerField()
     language = models.TextField()
     product = models.ForeignKey(Product,related_name="books", on_delete=models.CASCADE)
 

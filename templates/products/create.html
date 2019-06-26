@@ -20,7 +20,7 @@
         
         <!--=========================== Form =========================== -->
         <form action="{% url 'insert_product' %}" method="POST" enctype="multipart/form-data">
-            
+        {% csrf_token %}
             <div class="row">
                 
                 <!-- Name -->
@@ -96,8 +96,8 @@
                 <div class="form-group col-md-3">
                     <label for="">وضعیت نمایش</label>
                     <select class="form-control select2" name="is_active" id="">
-                        <option value="0">قابل نمایش</option>
-                        <option value="1">غیرقابل نمایش</option>
+                        <option value="1">قابل نمایش</option>
+                        <option value="0">غیرقابل نمایش</option>
                     </select>
                 </div>
 

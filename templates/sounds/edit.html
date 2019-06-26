@@ -1,118 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>پنل ادمین</title>
-    <!-- Css -->
-    <link rel="stylesheet" href="../../../css/fontiran.css">
-    <link rel="stylesheet" href="../../../css/fontawesome.min.css">
-    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="../../../css/select2.min.css">
-    <link rel="stylesheet" href="../../../css/admin/admin-main.css">
-    <link rel="stylesheet" href="../../../css/admin/admin-max992.css">
-    <link rel="stylesheet" href="../../../css/admin/admin-max768.css">
-    <link rel="stylesheet" href="../../../css/admin/admin-max576.css">
-</head>
-
-<body dir="rtl">
-
-<!-- Sidebar -->
-<div class="sidebar">
-    <a href="#"><i class="fab fa-dashcube ml-3"></i>داشبورد</a>
-    <a href="#" target="_blank"><i class="fas fa-sitemap ml-3"></i>فروشگاه (سایت)</a>
-    <div style="width: 100%;height: 1px;background:#FFFFFF;opacity: .5"></div>
-    <a href="#"><i class="fas fa-layer-group ml-3"></i>دسته بندی ها</a>
-    <a href="#"><i class="fas fa-tags ml-3"></i>برچسب ها</a>
-    <a href="#"><i class="fas fa-project-diagram ml-3"></i>محصولات</a>
-    <a href="#" class="active-menu"><i class="fas fa-video ml-3"></i>ویدیو ها</a>
-    <a href="#"><i class="fas fa-volume-up ml-3"></i>صوت ها</a>
-    <a href="#"><i class="fas fa-book-reader ml-3"></i>کتاب ها</a>
-    <a href="#"><i class="fas fa-book ml-3"></i>تست ها</a>
-    <a href="#"><i class="far fa-building ml-3"></i>انتشارات</a>
-    <div style="width: 100%;height: 1px;background:#FFFFFF;opacity: .5"></div>
-    <a href="#"><i class="fas fa-users ml-3"></i>کاربران</a>
-    <a href="#"><i class="fas fa-comment-alt ml-3"></i>دیدگاه ها</a>
-    <a href="#"><i class="far fa-credit-card ml-3"></i>سفارشات</a>
-    <a href="#"><i class="fas fa-ad ml-3"></i>آکهی ها</a>
-    <a href="#"><i class="fas fa-laptop-medical ml-3"></i>دیکشنری</a>
-    <a href="#"><i class="fas fa-user-cog ml-3"></i>تنظیمات</a>
-</div>
-
-<!--Content-->
-<div class="admin-content">
-
-    <div class="content">
-
-        <!-- Breadcrumbs -->
-        <div class="custom-breadcrumbs">
-            <span>مسیر جاری : </span>
-            <!--Item-->
-            <a href="#" class="item mr-2">پیشخوان</a>
-            <!--Item-->
-            <a href="#" class="item mr-2">ویدیو ها</a>
-        </div>
-        <hr>
-        <br>
-
-        <!--Topic Of Content-->
+{% extends 'parent.html' %}
+{% block active %}active-menu{% endblock %}
+{% block title %} انتشارات {% endblock %}
+{% block way %}
+            <a href="{% url 'dashboard' %}" class="item mr-2">پیشخوان</a>
+            <a href="{% url 'sound' %}" class="item mr-2">ویدئو </a>
+    <a href="{% url 'sound' %}" class="item mr-2">ویرایش  {{ sound.title }} </a>
+{% endblock %}
+    {% block content %}
         <div class="topic-content mb-4">
             <div class="d-flex align-items-center ">
                 <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
                     <i class="fas fa-video ml-3"></i>
                 </span>
-                <h5>ویرایش ویدیو</h5>
+                <h5>ویرایش صوت</h5>
             </div>
-            <a href="#" class="btn btn-sm return-btn">بازگشت</a>
+            <a href="{% url 'sound' %}" class="btn btn-sm return-btn">بازگشت</a>
         </div>
 
         <!--=========================== Form =========================== -->
-        <form action="#" method="POST">
 
+            <form action="{% url 'update_sound' sound.id %}" method="POST">
+            {% csrf_token %}
             <div class="row">
 
                 <!-- Name -->
                 <div class="form-group col-md-3">
                     <label for="">عنوان</label>
-                    <input type="text" class="form-control" name="" id="" >
+                    <input type="text" class="form-control" value="{{ sound.title }}" name="title" id="" >
                 </div>
 
                 <!-- Teacher -->
                 <div class="form-group col-md-3">
                     <label for="">مدرس</label>
-                    <input type="text" class="form-control" name="" id="" >
+                    <input type="text" class="form-control" value="{{ sound.teacher }}" name="teacher" id="" >
                 </div>
 
                 <!-- Product -->
                 <div class="form-group col-md-3">
                     <label for="">محصول مورد نظر</label>
-                    <select class="form-control select2" name="" id="">
+                    <select class="form-control select2" name="product" id="">
                         <option value=""></option>
-                        <option value="">محصول 1</option>
-                        <option value="">محصول 2</option>
-                        <option value="">محصول 3</option>
+                        {% for product in products %}
+                            {% if product.id == sound.productId %}
+                                <option value="{{ product.id }}" selected>{{ product.product_name }}</option>
+                            {% else %}
+                                <option value="{{ product.id }}">{{ product.product_name }}</option>
+                            {% endif %}
+
+                        {% endfor %}
                     </select>
                 </div>
 
                 <!-- Teacher -->
                 <div class="form-group col-md-3">
-                    <label for="">تاریخ انتشار ویدیو</label>
-                    <input type="text" class="form-control" name="" id="datepicker">
+                    <label for="">تاریخ انتشار صدا</label>
+                    <input type="text" class="form-control" value="{{ sound.publish_date }}" name="publish_date" id="datepicker">
                 </div>
 
-                <!-- File -->
-                <div class="form-group col-md-6">
-                    <label for="">فایل (ویدیو)</label>
-                    <input type="file" class="form-control" name="">
+                 <div class="form-group col-md-3">
+                    <label for="">مدت زمان صدا</label>
+                    <input type="text" class="form-control" value="{{ sound.time_duration }}" name="time_duration" id="" >
                 </div>
-
-                <!-- Last File -->
+                <div class="form-group col-md-3">
+                    <label for="">زبان صدا</label>
+                    <input type="text" class="form-control" value="{{ sound.language }}" name="language" id="" >
+                </div>
+                <!-- Teacher -->
                 <div class="form-group col-md-6">
-                    <label for="" class="d-block">فایل آپلود شده</label>
-                    <a href="#" style="text-decoration: line-through !important;">نام فایل</a>
+                    <label for="">فایل (صدا)</label>
+                    <input type="file" class="form-control" name="video_file">
                 </div>
 
             </div>
@@ -121,29 +77,14 @@
                 <!-- Submit -->
                 <div class="form-group col-md-2">
                     <label for=""></label>
-                    <input type="submit" class="form-control submit-btn" value="ویرایش">
+                    <input type="submit" class="form-control submit-btn" value="ثبت">
                 </div>
             </div>
 
         </form>
 
-    </div>
-
-</div>
-
-
-
-
-
-<!-- Scripts -->
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/vue2.min.js"></script>
-<script src="../../../js/bootstrap.min.js"></script>
-<script src="../../../js/select2.min.js"></script>
-<script src="../../../js/bootstrap-datepicker.min.js"></script>
-<script src="../../../js/bootstrap-datepicker.fa.min.js"></script>
-<script src="../../../js/admin/admin.js"></script>
-
+{% endblock %}
+  {% block script %}
 <script>
 
     $(document).ready(function () {
@@ -154,11 +95,13 @@
         });
 
 
-        // $("#datepicker").datepicker();
+         $("#datepicker").datepicker({
+             dateFormat: "yy/m/d",
+            minDate: 0,
+            maxDate: "+100D"
+         });
 
     })
 
 </script>
-</body>
-
-</html>
+{% endblock %}
