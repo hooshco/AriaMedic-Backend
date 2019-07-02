@@ -2,8 +2,6 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
-from rest_framework_swagger.views import get_swagger_view
-schema_view = get_swagger_view(title='Pastebin API')
 
 
 urlpatterns = [
@@ -56,5 +54,10 @@ urlpatterns = [
     path('panel/quize',views.quize,name="quize"),
     path('panel/quize/update/<int:id>',views.update_quize,name="update_quize"),
     path('panel/quize/delete/<int:id>',views.delete_quize,name="delete_quize"),
+
+    path('panel/users',views.Users,name="users"),
+    path('panel/users/insert',views.insert_Users,name="insert_users"),
+    path('panel/users/update/<int:id>',views.update_Users,name="update_users"),
+    path('panel/users/delete/<int:id>',views.delete_Users,name="delete_users"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

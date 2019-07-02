@@ -1,4 +1,4 @@
-#!/Volumes/Secondary/Projects/python/AriaMedic/venv/bin/python
+#!/Users/mohamad/PycharmProjects/AriaMedic-Backend/venv/bin/python
 
 # -*- coding: utf-8 -*-
 import re

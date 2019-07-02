@@ -1,0 +1,63 @@
+{% extends 'parent.html' %}
+{% block active %}active-menu{% endblock %}
+{% block title %}کاربران {% endblock %}
+{% block way %}
+            <a href="{% url 'dashboard' %}" class="item mr-2">پیشخوان</a>
+            <!--Item-->
+            <a href="{% url 'users' %}" class="item mr-2">کاربران</a>
+{% endblock %}
+{% block content %}
+        <div class="topic-content mb-4">
+            <div class="d-flex align-items-center ">
+                <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
+                    <i class="fas fa-project-diagram ml-3"></i>
+                </span>
+                <h5>کاربران</h5>
+            </div>
+            <a href="{% url 'insert_users' %}" class="btn btn-sm submit-btn">افزودن کاربر</a>
+        </div>
+
+        <!--Search-->
+        <input type="text" class="form-control mb-3" placeholder="جستجو در کاربران ...">
+
+        <!--========================= Table =========================-->
+        <div class="table-responsive text-nowrap">
+            <table class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">نام و نام خانوادگی</th>
+                <th scope="col">شماره موبایل</th>
+                <th scope="col">ایمیل</th>
+                <th scope="col">استان</th>
+                <th scope="col">رشته / شغل</th>
+                <th scope="col">سقف امانت</th>
+                <th scope="col">تنظیمات</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td class="d-flex align-items-center">
+                        <span>{{ user.full_name }}</span>
+                    </td>
+                    <td>{{ user.phone_number}}</td>
+                    <td>
+                        <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">{{ user.email }}</span>
+                    </td>
+                    <td>{{ user.state.name }}</td>
+                    <td>{{ user.major.name }}</td>
+                    <td> <span class="alert-dark" style="padding: 2px 10px;border-radius: 3px">{{ user.qty }}</span></td>
+                    <td>
+                        <a href="{% url 'update_users' user.id %}" class="btn btn-sm btn-warning">ویرایش</a>
+                        <a href="{% url 'delete_users' user.id %}" class="btn btn-sm btn-outline-danger">حذف</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+        </div>
+{% endblock %}
+
+

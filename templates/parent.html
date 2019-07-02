@@ -34,7 +34,7 @@
                   <a href="{% url 'quize' %}" class="{%  if request.resolver_match.url_name == 'quize' %}active-menu {% endif %}"><i class="fas fa-book ml-3"></i>تست ها</a>
                   <a href="{% url 'publisher' %}" class="{%  if request.resolver_match.url_name == 'publisher' %}active-menu {% endif %}"><i class="far fa-building ml-3"></i>انتشارات</a>
                   <div style="width: 100%;height: 1px;background:#FFFFFF;opacity: .5"></div>
-                  <a href="#"><i class="fas fa-users ml-3"></i>کاربران</a>
+                  <a href="{% url 'users' %}" class="{%  if request.resolver_match.url_name == 'users' %}active-menu {% endif %}"><i class="fas fa-users ml-3"></i>کاربران</a>
                   <a href="#"><i class="fas fa-comment-alt ml-3"></i>دیدگاه ها</a>
                   <a href="#"><i class="far fa-credit-card ml-3"></i>سفارشات</a>
                   <a href="#"><i class="fas fa-ad ml-3"></i>آکهی ها</a>

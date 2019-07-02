@@ -1,0 +1,113 @@
+{% extends 'parent.html' %}
+{% block active %}active-menu{% endblock %}
+{% block title %}کاربران {% endblock %}
+{% block way %}
+            <a href="{% url 'dashboard' %}" class="item mr-2">پیشخوان</a>
+            <!--Item-->
+            <a href="{% url 'users' %}" class="item mr-2">کاربران</a>
+            <a href="#" class="item mr-2">ویرایش {{ user.full_name }}</a>
+{% endblock %}
+{% block content %}
+        <div class="topic-content mb-4">
+            <div class="d-flex align-items-center ">
+                <span style="width: 30px;height: 30px;background-color: var(--backgroung-color);border-radius: 50%" class="d-flex align-items-center justify-content-center ml-3">
+                    <i class="fas fa-project-diagram ml-3"></i>
+                </span>
+                <h5>ویرایش کاربر</h5>
+            </div>
+            <a href="{% url 'users' %}" class="btn btn-sm return-btn">بازگشت</a>
+        </div>
+
+        <form action="{% url 'update_users' user.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="row">
+
+                <!-- Name -->
+                <div class="form-group col-md-3">
+                    <label for="">نام کامل</label>
+                    <input type="text" class="form-control" name="full_name" value="{{ user.full_name }}" id="" >
+                </div>
+                <!-- Categories -->
+                <div class="form-group col-md-3">
+                    <label for="">شماره موبایل</label>
+
+                    <input type="text" class="form-control" name="phone_number" value="{{ user.phone_number }}" disabled >
+                </div>
+
+                <!-- Publisher -->
+                <div class="form-group col-md-3">
+                    <label for="">ایمیل</label>
+                    <input type="text" class="form-control" name="email" value="{{ user.email }}" id="" >
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="">استان</label>
+                    <select class="form-control select2" name="publisher" id="">
+                        <option value=""></option>
+                        {% for publisher in publishers %}
+                            <option value="{{ publisher.id }}">{{ publisher.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+
+                <!-- Description -->
+                <div class="form-group col-md-3">
+                    <label for="">شغل</label>
+                    <select class="form-control select2" name="publisher" id="">
+                        <option value=""></option>
+                        {% for publisher in publishers %}
+                            <option value="{{ publisher.id }}">{{ publisher.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="">تعداد امانت</label>
+                    <input type="number" class="form-control" name="qty" value="{{ user.qty }}" id="" >
+                </div>
+
+            <!-- Offer Time -->
+                <div class="form-group col-md-6">
+                    <label for="">تصاویر پروفایل</label>
+                    <input type="file" class="form-control" name="profile_image"  id="" >
+                </div>
+
+
+
+
+
+            </div>
+
+            <div class="row">
+                <!-- Submit -->
+                <div class="form-group col-md-2">
+                    <label for=""></label>
+                    <input type="submit" class="form-control submit-btn" value="ثبت">
+                </div>
+            </div>
+
+        </form>
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block script %}
+
+<script>
+
+    $(document).ready(function () {
+
+        $('.select2').select2({
+            placeholder: "انتخاب کنید",
+
+        });
+    })
+
+
+</script>
+{% endblock %}

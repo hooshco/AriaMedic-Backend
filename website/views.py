@@ -444,7 +444,7 @@ def update_product(request,id):
         product.sell_type = int(sell_type)
         product.discount_percent = int(discount_percent) if discount_percent else None
         product.discount_time = date
-        product.is_active = True if int(is_active) == 1 else False
+        product.is_active = True if int(is_active) == 0 else False
         product.save()
         if "images" in request.FILES:
             for img in request.FILES.getlist('images'):
@@ -468,8 +468,6 @@ def insert_products(request):
     if request.method == "GET":
         categorys = models.Category.objects.all()
         publisher = models.Publisher.objects.all()
-
-
         return render(request, "products/create.html",context={"categorys":categorys,"publishers":publisher })
     else:
         title = request.POST.get("title")
@@ -879,3 +877,56 @@ def update_quize(request,id):
 def delete_quize(request,id):
         models.Quize.objects.get(id=id).delete()
         return redirect("quize")
+
+@require_http_methods(["GET"])
+def Users(request):
+    # models.User.objects.create_superuser("09382138446","09382138446",full_name="محمد محمدی")
+    users = models.User.objects.all()
+    return render(request, "users/all.html", context=locals())
+
+@require_http_methods(["GET","POST"])
+def insert_Users(request):
+    if request.method == "POST":
+        full_name = request.POST.get("full_name")
+        phone_number = request.POST.get("phone_number")
+        email = request.POST.get("email")
+        state = request.POST.get("state") if "state" in request.POST else None
+        major = request.POST.get("major") if "major" in request.POST else None
+        profile_image = request.FILES.get("profile_image") if "profile_image" in request.FILES else None
+        qty = request.POST.get("qty")
+        password = request.POST.get("password")
+
+        models.User.objects.create_user(phone_number,password,full_name=full_name,email=email,major=major,state=state,profile_image = profile_image,qty=qty)
+        return redirect("users")
+    else:
+        return render(request, "users/create.html")
+
+@require_http_methods(["GET","POST"])
+def delete_Users(request,id):
+    models.User.objects.get(id=id).delete()
+    return redirect("users")
+
+@require_http_methods(["GET","POST"])
+def update_Users(request,id):
+    user = models.User.objects.get(id=id)
+    if request.method == "POST":
+        full_name = request.POST.get("full_name")
+        # phone_number = request.POST.get("phone_number")
+        email = request.POST.get("email")
+        state = request.POST.get("state") if "state" in request.POST else None
+        major = request.POST.get("major") if "major" in request.POST else None
+        profile_image = request.FILES.get("profile_image") if "profile_image" in request.FILES else None
+        qty = request.POST.get("qty")
+        user.qty = qty
+        user.profile_image = profile_image
+        user.state = state
+        user.major = major
+        user.email = email
+        # user.phone_number = phone_number
+        user.full_name = full_name
+        user.save()
+        return redirect("users")
+    else:
+        return render(request,"users/edit.html",context=locals())
+
+
